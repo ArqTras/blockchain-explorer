@@ -286,7 +286,7 @@ main(int ac, const char* av[])
 
     CROW_ROUTE(app, "/")
     ([&](const crow::request& req) {
-        return crow::response(arqblocks.index2());
+      return crow::response(arqblocks.index2());
     });
 
     CROW_ROUTE(app, "/page/<uint>")
@@ -297,11 +297,6 @@ main(int ac, const char* av[])
     CROW_ROUTE(app, "/block/<uint>")
     ([&](const crow::request& req, size_t block_height) {
         return crow::response(arqblocks.show_block(block_height));
-    });
-    
-    CROW_ROUTE(app, "/randomx/<uint>")
-    ([&](size_t block_height) {
-        return arqblocks.show_randomx(block_height);
     });
 
     CROW_ROUTE(app, "/block/<string>")
@@ -531,10 +526,10 @@ main(int ac, const char* av[])
         return arqblocks.mempool(true);
     });
 
-    CROW_ROUTE(app, "/altblocks")
-    ([&](const crow::request& req) {
-        return arqblocks.altblocks();
-    });
+//    CROW_ROUTE(app, "/altblocks")
+//    ([&](const crow::request& req) {
+//        return arqblocks.altblocks();
+//    });
 
     CROW_ROUTE(app, "/robots.txt")
     ([&]() {
@@ -608,6 +603,11 @@ main(int ac, const char* av[])
     {
 
         cout << "Enable JSON API\n";
+
+	CROW_ROUTE(app, "/api")
+        ([&](const crow::request& req) {
+            return crow::response(arqblocks.api());
+        });
 
         CROW_ROUTE(app, "/api/transaction/<string>")
         ([&](const crow::request &req, string tx_hash) {

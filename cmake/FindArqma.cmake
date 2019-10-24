@@ -44,7 +44,7 @@ foreach (l ${LIBS})
 	find_library(Arqma_${L}_LIBRARY
 		NAMES ${l}
 		PATHS ${CMAKE_LIBRARY_PATH}
-		PATH_SUFFIXES "/src/${l}" "/src/" "/external/db_drivers/lib${l}" "/lib" "/src/crypto" "/contrib/epee/src" "/external/easylogging++/" "/external/${l}"
+		PATH_SUFFIXES "/src/${l}" "/src/" "/external/db_drivers/lib${l}" "/lib" "/src/crypto" "/contrib/epee/src" "/external/easylogging++/" "/external/randomarq"
 		NO_DEFAULT_PATH
 	)
 
@@ -64,21 +64,14 @@ if (EXISTS ${ARQMA_BUILD_DIR}/src/ringct/libringct_basic.a)
 			PROPERTY IMPORTED_LOCATION ${ARQMA_BUILD_DIR}/src/ringct/libringct_basic.a)
 endif()
 
-if(EXISTS ${ARQMA_BUILD_DIR}/external/randomarq/librandomx.a)
-  message(STATUS FindArqma " found librandomx.a")
-  add_library(randomx STATIC IMPORTED)
-  set_property(TARGET randomx PROPERTY IMPORTED_LOCATION ${ARQMA_BUILD_DIR}/external/randomarq/librandomx.a)
-endif()
 
 message(STATUS ${ARQMA_SOURCE_DIR}/build)
 
 # include arqma headers
 include_directories(
-    ${ARQMA_SOURCE_DIR}/src
-    ${ARQMA_SOURCE_DIR}/src/crypto
-    ${ARQMA_SOURCE_DIR}/external
-    ${ARQMA_SOURCE_DIR}/external/randomarq/src
-    ${ARQMA_SOURCE_DIR}/build/Linux/release-v0.6.0/release
-    ${ARQMA_SOURCE_DIR}/external/easylogging++
-    ${ARQMA_SOURCE_DIR}/contrib/epee/include
-    ${ARQMA_SOURCE_DIR}/external/db_drivers/liblmdb)
+		${ARQMA_SOURCE_DIR}/src
+		${ARQMA_SOURCE_DIR}/external
+		${ARQMA_SOURCE_DIR}/build/Linux/release-v0.5/release
+		${ARQMA_SOURCE_DIR}/external/easylogging++
+		${ARQMA_SOURCE_DIR}/contrib/epee/include
+		${ARQMA_SOURCE_DIR}/external/db_drivers/liblmdb)
