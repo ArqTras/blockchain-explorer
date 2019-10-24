@@ -19,8 +19,12 @@ set(SOURCE_FILES
   CurrentBlockchainStatus.cpp
   MempoolStatus.cpp
   MempoolStatus.h)
+            
+#add_subdirectory(crypto)
 
 # make static library called libmyxrm
 # that we are going to link to
 # in the root CMakeLists.txt file
 add_library(myxrm STATIC ${SOURCE_FILES})
+            
+#target_link_libraries(myxrm mycrypto)

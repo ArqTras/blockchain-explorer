@@ -52,7 +52,7 @@ namespace crow
             socket_.close();
         }
 
-        template <typename F>
+        template <typename F> 
         void start(F f)
         {
             f(boost::system::error_code());
@@ -102,7 +102,7 @@ namespace crow
             return GET_IO_SERVICE(raw_socket());
         }
 
-        template <typename F>
+        template <typename F> 
         void start(F f)
         {
             ssl_socket_->async_handshake(boost::asio::ssl::stream_base::server,

@@ -298,6 +298,11 @@ main(int ac, const char* av[])
     ([&](const crow::request& req, size_t block_height) {
         return crow::response(arqblocks.show_block(block_height));
     });
+    
+    CROW_ROUTE(app, "/randomx/<uint>")
+    ([&](const crow::request& req, size_t block_height) {
+        return crow::response(arqblocks.show_randomx(block_height));
+    });
 
     CROW_ROUTE(app, "/block/<string>")
     ([&](const crow::request& req, string block_hash) {
@@ -603,11 +608,6 @@ main(int ac, const char* av[])
     {
 
         cout << "Enable JSON API\n";
-
-	CROW_ROUTE(app, "/api")
-        ([&](const crow::request& req) {
-            return crow::response(arqblocks.api());
-        });
 
         CROW_ROUTE(app, "/api/transaction/<string>")
         ([&](const crow::request &req, string tx_hash) {

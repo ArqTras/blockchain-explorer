@@ -1399,7 +1399,7 @@ show_block(uint64_t _blk_height)
 
     string blk_pow_hash_str = pod_to_hex(get_block_longhash(core_storage, blk, _blk_height, 0));
     uint64_t blk_difficulty = core_storage->get_db().get_block_difficulty(_blk_height);
-
+    
     mstch::map context {
             {"testnet"              , testnet},
             {"stagenet"             , stagenet},
