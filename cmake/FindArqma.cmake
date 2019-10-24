@@ -30,7 +30,7 @@
 
 set(LIBS common;blocks;cryptonote_basic;cryptonote_core;multisig;net;
          cryptonote_protocol;daemonizer;mnemonics;epee;lmdb;device;
-         blockchain_db;ringct;wallet;cncrypto;easylogging;version;checkpoints;randomx)
+         blockchain_db;ringct;wallet;cncrypto;easylogging;version;checkpoints)
 
 set(Arqma_INCLUDE_DIRS "${CPP_ARQMA_DIR}")
 
@@ -64,6 +64,15 @@ if (EXISTS ${ARQMA_BUILD_DIR}/src/ringct/libringct_basic.a)
 			PROPERTY IMPORTED_LOCATION ${ARQMA_BUILD_DIR}/src/ringct/libringct_basic.a)
 endif()
 
+if(EXISTS ${ARQMA_BUILD_DIR}/external/randomarq/librandomx.a)
+
+  message(STATUS FindArqma " found librandomx.a")
+
+  add_library(randomx STATIC IMPORTED)
+
+  set_property(TARGET randomx PROPERTY IMPORTED_LOCATION ${ARQMA_BUILD_DIR}/external/randomarq/librandomx.a)
+
+endif()
 
 message(STATUS ${ARQMA_SOURCE_DIR}/build)
 
